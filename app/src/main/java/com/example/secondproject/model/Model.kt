@@ -44,6 +44,11 @@ class Model private constructor()  {
 
     }
 
+    fun removeStudent(position: Int) {
+        students.removeAt(position)
+        notifyDataChanged()
+    }
+
     init {
         students.add(Student("Noam Globerman", 324871466, "0503730945", "bialik 96", true))
     }

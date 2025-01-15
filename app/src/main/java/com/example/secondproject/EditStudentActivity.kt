@@ -35,6 +35,7 @@ class EditStudentActivity : AppCompatActivity() {
         val position: Int = intent.getIntExtra("studentPosition", -1)
         val saveButton: Button = findViewById<Button>(R.id.saveButton)
         val cancelButton: Button = findViewById<Button>(R.id.cancelButton)
+        val deleteButton: Button = findViewById<Button>(R.id.deleteButton)
         val errorMessage: TextView = findViewById<TextView>(R.id.errorMessage)
         var nameInput = findViewById<EditText>(R.id.editName)
         var idInput = findViewById<EditText>(R.id.editID)
@@ -73,6 +74,13 @@ class EditStudentActivity : AppCompatActivity() {
 
         cancelButton.setOnClickListener {
             Log.d("Activity", "cancel button clicked")
+            finish()
+        }
+
+        deleteButton.setOnClickListener {
+            Model.shared.removeStudent(position)
+            val studentsListIntent = Intent(this, StudentsListActivity::class.java)
+            this.startActivity(studentsListIntent)
             finish()
         }
 
